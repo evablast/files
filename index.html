@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  
+    <style>
+  
+  /* .goog-te-banner-frame.skiptranslate {
+      display: none !important;
+      } 
+  body {
+      top: 0px !important; 
+      }
+  .goog-tooltip {
+    display: none !important;
+}
+.goog-tooltip:hover {
+    display: none !important;
+}
+.goog-text-highlight {
+    background-color: transparent !important;
+    border: none !important; 
+    box-shadow: none !important;
+} */
+#goog-gt-tt, .goog-te-balloon-frame{display: none !important;} 
+.goog-text-highlight { background: none !important; box-shadow: none !important;}
+
+#goog-gt-tt, .goog-te-balloon-frame{display: none !important;} 
+.goog-text-highlight { background: none !important; box-shadow: none !important;}
+
+/* To hide the powered by */
+
+.goog-logo-link{display: none !important;}
+.goog-te-gadget{height: 28px !important;  overflow: hidden;}
+
+/* To remove the top frame */
+
+body{ top: 0 !important;}
+.goog-te-banner-frame{display: none !important;}
+      </style>
+  </head>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+<body>
+  <script>
+    function hc(dc){
+        lang = Cookies.get('language');
+        if(lang != dc){
+            window.location.hash = 'googtrans(en|' + dc + ')';
+            
+            Cookies.set('language', dc);
+        }
+    }
+    $.ajax({
+        type: "GET",
+        url: "https://geolocation-db.com/jsonp/",
+        jsonpCallback: "callback",
+        dataType: "jsonp",
+        success: function( location ) {
+            $('#country').html(location.country_code);
+            co = location.country_code;
+            co = co.toLowerCase();
+            hc(co); // Replace here
+        }
+    });
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+    }
+
+    // Force hiding of "original text" popup for menus, etc. (very annoying)
+    jQuery(selector).bind(
+                            "mouseenter mouseleave",
+                            function (event) {
+                                if (event.type === 'mouseenter')    { google_trans_tt.css('z-index', -1000); }
+                                else                                { google_trans_tt.css('z-index',  1000); }
+                            }
+                        );
+    </script>
+    <script src="https://equityfinonline.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <center>
+        <br/>
+        <div id="google_translate_element"></div><br/>
+        Country:&nbsp;<span id="country"></span>
+        <h1>Hello my friends this is a cool code.</h1>
+    </center>
+   </body>
+</html>
